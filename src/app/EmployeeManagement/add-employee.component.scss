@@ -1,0 +1,65 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+/* Define border colors for valid and invalid inputs */
+/* Define border colors for valid and invalid inputs */
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+input.ng-valid {
+  border: 1px solid green;
+}
+
+select.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+select.ng-valid {
+  border: 1px solid green;
+}
+.invalid-feedback {
+  color: red;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  input,
+  select {
+    padding: 6px;
+    margin-bottom: 8px;
+  }
+
+  button {
+    padding: 8px 16px;
+    margin-top: 16px;
+  }
+}

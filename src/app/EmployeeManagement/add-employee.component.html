@@ -1,0 +1,493 @@
+<div class="container">
+  <h2 class="text-center">Employee Management</h2>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="form">
+    <!-- Employee Name -->
+    <div class="row">
+      <div class="col-md-6">
+        <label for="employee_name">Employee Name</label>
+        <input
+          type="text"
+          id="employee_name"
+          formControlName="employee_name"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('employee_name')?.invalid &&
+            employeeForm.get('employee_name')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('employee_name')?.valid &&
+            employeeForm.get('employee_name')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('employee_name')?.invalid &&
+            employeeForm.get('employee_name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small *ngIf="employeeForm.get('employee_name')?.errors?.['required']"
+            >Employee Name is required</small
+          >
+        </div>
+      </div>
+      <!-- Date of Birth -->
+      <div class="col-md-6">
+        <label for="employee_dateOfBirth">Date of Birth</label>
+        <input
+          type="date"
+          id="employee_dateOfBirth"
+          formControlName="employee_dateOfBirth"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('employee_dateOfBirth')?.invalid &&
+            employeeForm.get('employee_dateOfBirth')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('employee_dateOfBirth')?.valid &&
+            employeeForm.get('employee_dateOfBirth')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('employee_dateOfBirth')?.invalid &&
+            employeeForm.get('employee_dateOfBirth')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small
+            *ngIf="employeeForm.get('employee_dateOfBirth')?.errors?.['required']"
+            >Date of Birth is required</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Email and Contact Number -->
+    <div class="row">
+      <div class="col-md-6">
+        <label for="employee_email">Email</label>
+        <input
+          type="email"
+          id="employee_email"
+          formControlName="employee_email"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('employee_email')?.invalid &&
+            employeeForm.get('employee_email')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('employee_email')?.valid &&
+            employeeForm.get('employee_email')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('employee_email')?.invalid &&
+            employeeForm.get('employee_email')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small
+            *ngIf="employeeForm.get('employee_email')?.errors?.['required']"
+            >Email is required</small
+          >
+          <small *ngIf="employeeForm.get('employee_email')?.errors?.['email']"
+            >Invalid email format</small
+          >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="employee_contact_No">Contact Number</label>
+        <input
+          type="tel"
+          id="employee_contact_No"
+          formControlName="employee_contact_No"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('employee_contact_No')?.invalid &&
+            employeeForm.get('employee_contact_No')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('employee_contact_No')?.valid &&
+            employeeForm.get('employee_contact_No')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('employee_contact_No')?.invalid &&
+            employeeForm.get('employee_contact_No')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small
+            *ngIf="employeeForm.get('employee_contact_No')?.errors?.['required']"
+            >Contact Number is required</small
+          >
+          <small
+            *ngIf="employeeForm.get('employee_contact_No')?.errors?.['pattern']"
+            >Contact Number must be 10 digits</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Address and Age -->
+    <div class="row">
+      <div class="col-md-6">
+        <label for="employee_address">Address</label>
+        <input
+          type="text"
+          id="employee_address"
+          formControlName="employee_address"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('employee_address')?.invalid &&
+            employeeForm.get('employee_address')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('employee_address')?.valid &&
+            employeeForm.get('employee_address')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('employee_address')?.invalid &&
+            employeeForm.get('employee_address')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small
+            *ngIf="employeeForm.get('employee_address')?.errors?.['required']"
+            >Address is required</small
+          >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="employee_age">Age</label>
+        <input
+          type="number"
+          id="employee_age"
+          formControlName="employee_age"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('employee_age')?.invalid &&
+            employeeForm.get('employee_age')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('employee_age')?.valid &&
+            employeeForm.get('employee_age')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('employee_age')?.invalid &&
+            employeeForm.get('employee_age')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small *ngIf="employeeForm.get('employee_age')?.errors?.['required']"
+            >Age is required</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Salary and Zip Code -->
+    <div class="row">
+      <div class="col-md-6">
+        <label for="employee_Salary">Salary</label>
+        <input
+          type="number"
+          id="employee_Salary"
+          formControlName="employee_Salary"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('employee_Salary')?.invalid &&
+            employeeForm.get('employee_Salary')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('employee_Salary')?.valid &&
+            employeeForm.get('employee_Salary')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('employee_Salary')?.invalid &&
+            employeeForm.get('employee_Salary')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small
+            *ngIf="employeeForm.get('employee_Salary')?.errors?.['required']"
+            >Salary is required</small
+          >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="employee_zipCode">Zip Code</label>
+        <input
+          type="text"
+          id="employee_zipCode"
+          formControlName="employee_zipCode"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('employee_zipCode')?.invalid &&
+            employeeForm.get('employee_zipCode')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('employee_zipCode')?.valid &&
+            employeeForm.get('employee_zipCode')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('employee_zipCode')?.invalid &&
+            employeeForm.get('employee_zipCode')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small
+            *ngIf="employeeForm.get('employee_zipCode')?.errors?.['required']"
+            >Zip Code is required</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Join Date and Hobbies -->
+    <div class="row">
+      <div class="col-md-6">
+        <label for="employee_join_date">Join Date</label>
+        <input
+          type="date"
+          id="employee_join_date"
+          formControlName="employee_join_date"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('employee_join_date')?.invalid &&
+            employeeForm.get('employee_join_date')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('employee_join_date')?.valid &&
+            employeeForm.get('employee_join_date')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('employee_join_date')?.invalid &&
+            employeeForm.get('employee_join_date')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small
+            *ngIf="employeeForm.get('employee_join_date')?.errors?.['required']"
+            >Join Date is required</small
+          >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="employee_hobbies">Hobbies</label>
+        <input
+          type="text"
+          id="employee_hobbies"
+          formControlName="employee_hobbies"
+          class="form-control"
+        />
+      </div>
+    </div>
+
+    <!-- Shift Type and Department Name -->
+    <div class="row">
+      <div class="col-md-6">
+        <label for="employee_shift_type">Shift Type</label>
+        <select
+          id="employee_shift_type"
+          formControlName="employee_shift_type"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('employee_shift_type')?.invalid &&
+            employeeForm.get('employee_shift_type')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('employee_shift_type')?.valid &&
+            employeeForm.get('employee_shift_type')?.touched
+          "
+          required
+        >
+          <option value="" disabled>Select Shift Type</option>
+          <option value="1">Shift 1</option>
+          <option value="2">Shift 2</option>
+          <option value="3">Shift 3</option>
+        </select>
+        <div
+          *ngIf="
+            employeeForm.get('employee_shift_type')?.invalid &&
+            employeeForm.get('employee_shift_type')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small>Shift Type is required</small>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="department_name">Department Name</label>
+        <input
+          type="text"
+          id="department_name"
+          formControlName="department_name"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('department_name')?.invalid &&
+            employeeForm.get('department_name')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('department_name')?.valid &&
+            employeeForm.get('department_name')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('department_name')?.invalid &&
+            employeeForm.get('department_name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small
+            *ngIf="employeeForm.get('department_name')?.errors?.['required']"
+            >Department Name is required</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Designation Name and Country Name -->
+    <div class="row">
+      <div class="col-md-6">
+        <label for="designation_name">Designation Name</label>
+        <input
+          type="text"
+          id="designation_name"
+          formControlName="designation_name"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('designation_name')?.invalid &&
+            employeeForm.get('designation_name')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('designation_name')?.valid &&
+            employeeForm.get('designation_name')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('designation_name')?.invalid &&
+            employeeForm.get('designation_name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small
+            *ngIf="employeeForm.get('designation_name')?.errors?.['required']"
+            >Designation Name is required</small
+          >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="country_name">Country Name</label>
+        <input
+          type="text"
+          id="country_name"
+          formControlName="country_name"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('country_name')?.invalid &&
+            employeeForm.get('country_name')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('country_name')?.valid &&
+            employeeForm.get('country_name')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('country_name')?.invalid &&
+            employeeForm.get('country_name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small *ngIf="employeeForm.get('country_name')?.errors?.['required']"
+            >Country Name is required</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- State Name and City Name -->
+    <div class="row">
+      <div class="col-md-6">
+        <label for="state_name">State Name</label>
+        <input
+          type="text"
+          id="state_name"
+          formControlName="state_name"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('state_name')?.invalid &&
+            employeeForm.get('state_name')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('state_name')?.valid &&
+            employeeForm.get('state_name')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('state_name')?.invalid &&
+            employeeForm.get('state_name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small *ngIf="employeeForm.get('state_name')?.errors?.['required']"
+            >State Name is required</small
+          >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="city_name">City Name</label>
+        <input
+          type="text"
+          id="city_name"
+          formControlName="city_name"
+          class="form-control"
+          [class.is-invalid]="
+            employeeForm.get('city_name')?.invalid &&
+            employeeForm.get('city_name')?.touched
+          "
+          [class.is-valid]="
+            employeeForm.get('city_name')?.valid &&
+            employeeForm.get('city_name')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            employeeForm.get('city_name')?.invalid &&
+            employeeForm.get('city_name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          <small *ngIf="employeeForm.get('city_name')?.errors?.['required']"
+            >City Name is required</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="row">
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
