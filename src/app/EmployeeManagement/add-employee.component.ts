@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-EmployeeManagement-add-employee',
@@ -10,7 +11,10 @@ export class AddEmployeeComponent {
   employeeForm: FormGroup;
   addToList: any[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<AddEmployeeComponent>
+  ) {
     this.employeeForm = this.formBuilder.group({
       // Initialize employeeForm with formBuilder
       employee_name: ['', Validators.required],
@@ -35,6 +39,9 @@ export class AddEmployeeComponent {
     });
   }
 
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
   onSubmit() {
     if (this.employeeForm.valid) {
       // Process the form data

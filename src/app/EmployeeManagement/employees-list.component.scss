@@ -26,6 +26,10 @@ table {
   border-collapse: collapse;
 }
 
+.ls {
+  height: 50px; /* Set the height of the buttons */
+  width: 120px; /* Set the width of the buttons */
+}
 /* AddEmployeeComponent CSS */
 .add-button {
   background-color: #007bff; /* Blue color */

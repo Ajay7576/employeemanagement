@@ -2,7 +2,7 @@
   <div class="header">
     <h2>Employees List</h2>
 
-    <button mat-raised-button color="btn btn-primary" class="add-button">
+    <button mat-button class="add-button ls" (click)="openAddEmployeeDialog()">
       Add Employee
     </button>
   </div>
@@ -11,24 +11,109 @@
       <!-- Define your columns -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+        <td mat-cell *matCellDef="let dataSource">{{ dataSource.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
-        <td mat-cell *matCellDef="let row">{{ row.position }}</td>
+      <ng-container matColumnDef="dateOfBirth">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth</th>
+        <td mat-cell *matCellDef="let dataSource">
+          {{ dataSource.dateOfBirth }}
+        </td>
       </ng-container>
 
-      <ng-container matColumnDef="salary">
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let dataSource">{{ dataSource.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="contact_No">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact No</th>
+        <td mat-cell *matCellDef="let dataSource">
+          {{ dataSource.contact_No }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+        <td mat-cell *matCellDef="let dataSource">{{ dataSource.address }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
+        <td mat-cell *matCellDef="let dataSource">{{ dataSource.age }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Salary">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
-        <td mat-cell *matCellDef="let row">{{ row.salary }}</td>
+        <td mat-cell *matCellDef="let dataSource">{{ dataSource.Salary }}</td>
       </ng-container>
 
-      <!-- Define the column for the action buttons -->
+      <ng-container matColumnDef="zipCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Zip Code</th>
+        <td mat-cell *matCellDef="let dataSource">{{ dataSource.zipCode }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="join_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Join Date</th>
+        <td mat-cell *matCellDef="let dataSource">
+          {{ dataSource.join_date }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hobbies">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Hobbies</th>
+        <td mat-cell *matCellDef="let dataSource">{{ dataSource.hobbies }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="gender_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender ID</th>
+        <td mat-cell *matCellDef="let dataSource">
+          {{ dataSource.gender_id }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="shift_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Shift Type</th>
+        <td mat-cell *matCellDef="let dataSource">
+          {{ dataSource.shift_type }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="department_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Department ID</th>
+        <td mat-cell *matCellDef="let dataSource">
+          {{ dataSource.department_id }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="country_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Country ID</th>
+        <td mat-cell *matCellDef="let dataSource">
+          {{ dataSource.country_id }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="state_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>State ID</th>
+        <td mat-cell *matCellDef="let dataSource">{{ dataSource.state_id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="city_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>City ID</th>
+        <td mat-cell *matCellDef="let dataSource">{{ dataSource.city_id }}</td>
+      </ng-container>
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let row">
-          <!-- Your action buttons here -->
+          <button mat-icon-button title="Preview" (click)="preview(row)">
+            <mat-icon>Preview</mat-icon>
+          </button>
+          <button mat-icon-button title="Edit" (click)="edit(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button title="Delete" (click)="delete(row)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </td>
       </ng-container>
 
@@ -40,7 +125,10 @@
 
   <!-- Add a paginator inside the mat-table -->
   <mat-paginator
-    [pageSizeOptions]="[5, 10, 25, 100]"
+    [length]="dataSource.data.length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChange($event)"
     showFirstLastButtons
   ></mat-paginator>
 </div>

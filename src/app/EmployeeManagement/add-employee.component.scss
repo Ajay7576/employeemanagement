@@ -47,6 +47,30 @@ select.ng-valid {
   font-size: 14px;
 }
 
+.dialog-content {
+  max-height: 400px; /* Adjust the maximum height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* styles.css or your component's CSS file */
+.buttonrow {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+/* styles.css or your component's CSS file */
+.ls {
+  height: 50px; /* Set the height of the buttons */
+  width: 120px; /* Set the width of the buttons */
+}
+
+.col-md-6 {
+  flex: 0 0 48%; /* Adjust the width of the columns as needed */
+    justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 10px;

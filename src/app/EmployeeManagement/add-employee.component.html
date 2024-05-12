@@ -1,6 +1,11 @@
 <div class="container">
   <h2 class="text-center">Employee Management</h2>
-  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="form">
+  <form
+    [formGroup]="employeeForm"
+    (ngSubmit)="onSubmit()"
+    class="form"
+    class="dialog-content"
+  >
     <!-- Employee Name -->
     <div class="row">
       <div class="col-md-6">
@@ -484,9 +489,23 @@
     </div>
 
     <!-- Submit Button -->
-    <div class="row">
-      <div class="col-md-12">
-        <button type="submit" class="btn btn-primary">Submit</button>
+    <!-- add-employee.component.html -->
+    <div class="buttonrow">
+      <div class="col-md-6">
+        <button type="submit" mat-raised-button class="ls" color="primary" >
+          Submit
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button
+          type="button"
+          mat-raised-button
+          class="ls"
+          (click)="closeDialog()"
+          color="warn"
+        >
+          Cancel
+        </button>
       </div>
     </div>
   </form>
