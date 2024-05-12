@@ -1,0 +1,17 @@
+.spacer {
+  flex: 0.2 auto;
+}
+
+.mat-nav-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.mat-list-item {
+  padding: 0 12px;
+}
+
+.active {
+  font-weight: bold;
+  color: antiquewhite;
+}

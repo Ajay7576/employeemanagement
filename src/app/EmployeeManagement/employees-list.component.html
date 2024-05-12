@@ -1,1 +1,46 @@
-<p>employees-list works!</p>
+<div class="mat-elevation-z8">
+  <div class="header">
+    <h2>Employees List</h2>
+
+    <button mat-raised-button color="btn btn-primary" class="add-button">
+      Add Employee
+    </button>
+  </div>
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- Define your columns -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
+        <td mat-cell *matCellDef="let row">{{ row.position }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="salary">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
+        <td mat-cell *matCellDef="let row">{{ row.salary }}</td>
+      </ng-container>
+
+      <!-- Define the column for the action buttons -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let row">
+          <!-- Your action buttons here -->
+        </td>
+      </ng-container>
+
+      <!-- Set the displayed columns -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <!-- Add a paginator inside the mat-table -->
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
