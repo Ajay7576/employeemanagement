@@ -25,8 +25,6 @@ button {
   margin-top: 20px;
 }
 
-/* Define border colors for valid and invalid inputs */
-/* Define border colors for valid and invalid inputs */
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
@@ -42,36 +40,33 @@ select.ng-invalid.ng-touched {
 select.ng-valid {
   border: 1px solid green;
 }
+
 .invalid-feedback {
   color: red;
   font-size: 14px;
 }
 
 .dialog-content {
-  max-height: 400px; /* Adjust the maximum height as needed */
-  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 400px;
+  overflow-y: auto;
 }
 
-/* styles.css or your component's CSS file */
 .buttonrow {
   display: flex;
   justify-content: space-between;
-  
 }
 
-/* styles.css or your component's CSS file */
 .ls {
-  height: 50px; /* Set the height of the buttons */
-  width: 120px; /* Set the width of the buttons */
+  height: 50px;
+  width: 120px;
 }
 
 .col-md-6 {
-  flex: 0 0 48%; /* Adjust the width of the columns as needed */
-    justify-content: center;
-  align-items: center;
+  flex: 0 0 48%;
 }
 
-@media (max-width: 768px) {
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
   .container {
     padding: 10px;
   }
@@ -86,4 +81,27 @@ select.ng-valid {
     padding: 8px 16px;
     margin-top: 16px;
   }
+
+  .col-md-6 {
+    flex: 0 0 100%;
+  }
+
+  .buttonrow {
+    flex-direction: column;
+  }
+
+  .buttonrow button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/* Android-specific adjustments */
+@media only screen and (max-device-width: 480px) {
+  /* Adjust styles for smaller Android devices */
+}
+
+/* iPhone-specific adjustments */
+@media only screen and (max-device-width: 375px) {
+  /* Adjust styles for smaller iPhones */
 }
