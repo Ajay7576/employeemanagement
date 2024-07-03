@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms'; // Import the ReactiveForm
 import { RouterModule } from '@angular/router'; // Import RouterModule
 import { AppRoutingModule } from './app-routing.module'; // Import your AppRoutingModule
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+
 import { CustomPopUpComponent } from './EmployeeManagement/custom-pop-up.component';
 
 import { AddEmployeeComponent } from './EmployeeManagement/add-employee.component';
@@ -28,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule, // Add ReactiveFormsModule to the imports array
     RouterModule, // Add RouterModule to the imports array
     AppRoutingModule,

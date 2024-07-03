@@ -1,110 +1,100 @@
 <div class="mat-elevation-z8">
   <div class="header">
     <h2>Employees List</h2>
-
     <button mat-button class="add-button ls" (click)="openAddEmployeeDialog()">
       Add Employee
     </button>
   </div>
   <div class="table-container">
-    <table mat-table [dataSource]="dataSource" matSort>
-      <!-- Define your columns -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let dataSource">{{ dataSource.name }}</td>
+    <mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+      <ng-container matColumnDef="employee_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_name }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="dateOfBirth">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth</th>
-        <td mat-cell *matCellDef="let dataSource">
-          {{ dataSource.dateOfBirth }}
-        </td>
+      <ng-container matColumnDef="employee_dateOfBirth">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_dateOfBirth }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-        <td mat-cell *matCellDef="let dataSource">{{ dataSource.email }}</td>
+      <ng-container matColumnDef="employee_email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_email }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="contact_No">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact No</th>
-        <td mat-cell *matCellDef="let dataSource">
-          {{ dataSource.contact_No }}
-        </td>
+      <ng-container matColumnDef="employee_contact_No">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Contact No</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_contact_No }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="address">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
-        <td mat-cell *matCellDef="let dataSource">{{ dataSource.address }}</td>
+      <ng-container matColumnDef="employee_address">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_address }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="age">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
-        <td mat-cell *matCellDef="let dataSource">{{ dataSource.age }}</td>
+      <ng-container matColumnDef="employee_age">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Age</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_age }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="Salary">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
-        <td mat-cell *matCellDef="let dataSource">{{ dataSource.Salary }}</td>
+      <ng-container matColumnDef="employee_Salary">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Salary</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_Salary }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="zipCode">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Zip Code</th>
-        <td mat-cell *matCellDef="let dataSource">{{ dataSource.zipCode }}</td>
+      <ng-container matColumnDef="employee_zipCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Zip Code</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_zipCode }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="join_date">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Join Date</th>
-        <td mat-cell *matCellDef="let dataSource">
-          {{ dataSource.join_date }}
-        </td>
+      <ng-container matColumnDef="employee_join_date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Join Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_join_date }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="hobbies">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Hobbies</th>
-        <td mat-cell *matCellDef="let dataSource">{{ dataSource.hobbies }}</td>
+      <ng-container matColumnDef="employee_hobbies">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Hobbies</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_hobbies }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="gender_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender ID</th>
-        <td mat-cell *matCellDef="let dataSource">
-          {{ dataSource.gender_id }}
-        </td>
+      <ng-container matColumnDef="gender_type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Gender</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.gender_type }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="shift_type">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Shift Type</th>
-        <td mat-cell *matCellDef="let dataSource">
-          {{ dataSource.shift_type }}
-        </td>
+      <ng-container matColumnDef="employee_shift_type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Shift Type</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.employee_shift_type }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="department_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Department ID</th>
-        <td mat-cell *matCellDef="let dataSource">
-          {{ dataSource.department_id }}
-        </td>
+      <ng-container matColumnDef="department_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Department</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.department_name }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="country_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Country ID</th>
-        <td mat-cell *matCellDef="let dataSource">
-          {{ dataSource.country_id }}
-        </td>
+      <ng-container matColumnDef="designation_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Designation</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.designation_name }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="state_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>State ID</th>
-        <td mat-cell *matCellDef="let dataSource">{{ dataSource.state_id }}</td>
+      <ng-container matColumnDef="country_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.country_name }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="city_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>City ID</th>
-        <td mat-cell *matCellDef="let dataSource">{{ dataSource.city_id }}</td>
+      <ng-container matColumnDef="state_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.state_name }}</mat-cell>
       </ng-container>
+
+      <ng-container matColumnDef="city_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.city_name }}</mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let row">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let row">
           <button mat-icon-button title="Preview" (click)="preview(row)">
             <mat-icon>Preview</mat-icon>
           </button>
@@ -114,21 +104,19 @@
           <button mat-icon-button title="Delete" (click)="delete(row)">
             <mat-icon>delete</mat-icon>
           </button>
-        </td>
+        </mat-cell>
       </ng-container>
 
-      <!-- Set the displayed columns -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-  </div>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
 
-  <!-- Add a paginator inside the mat-table -->
-  <mat-paginator
-    [length]="dataSource.data.length"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions"
-    (page)="onPageChange($event)"
-    showFirstLastButtons
-  ></mat-paginator>
+    <mat-paginator
+      [length]="dataSource.data.length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageChange($event)"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
 </div>

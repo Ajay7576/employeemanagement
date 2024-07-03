@@ -1,28 +1,30 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEmployeeComponent } from './add-employee.component';
+import { ApiService } from '../api.service';
 
 export interface Employee {
-  name: string;
-  dateOfBirth: string;
-  email: string;
-  contact_No: string;
-  address: string;
-  age: number;
-  Salary: number;
-  zipCode: string;
-  join_date: string;
-  hobbies: string;
-  gender_id: number;
-  shift_type: number;
-  department_id: number;
-  country_id: number;
-  state_id: number;
-  city_id: number;
+  employee_name: string;
+  employee_dateOfBirth: string;
+  employee_email: string;
+  employee_contact_No: string;
+  employee_address: string;
+  employee_age: number;
+  employee_Salary: number;
+  employee_zipCode: string;
+  employee_join_date: string;
+  employee_hobbies: string;
+  gender_type: string;
+  employee_shift_type: number;
+  department_name: string;
+  designation_name: string;
+  country_name: string;
+  state_name: string;
+  city_name: string;
 }
 
 @Component({
@@ -30,101 +32,77 @@ export interface Employee {
   templateUrl: './employees-list.component.html',
   styleUrls: ['./employees-list.component.scss'],
 })
-export class EmployeesListComponent {
+export class EmployeesListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
-    'name',
-    'dateOfBirth',
-    'email',
-    'contact_No',
-    'address',
-    'age',
-    'Salary',
-    'zipCode',
-    'join_date',
-    'hobbies',
-    'gender_id',
-    'shift_type',
-    'department_id',
-    'country_id',
-    'state_id',
-    'city_id',
+    'employee_name',
+    'employee_dateOfBirth',
+    'employee_email',
+    'employee_contact_No',
+    'employee_address',
+    'employee_age',
+    'employee_Salary',
+    'employee_zipCode',
+    'employee_join_date',
+    'employee_hobbies',
+    'gender_type',
+    'employee_shift_type',
+    'department_name',
+    'designation_name',
+    'country_name',
+    'state_name',
+    'city_name',
     'actions',
   ];
-  dataSource: MatTableDataSource<Employee>;
+  dataSource = new MatTableDataSource<Employee>();
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
+  sortField: string = 'employee_name'; // Default sorting field
+  sortDirection: string = 'asc'; // Default sorting direction
+  searchField: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public dialog: MatDialog) {
-    const employees: Employee[] = [
-      {
-        name: 'John Doe',
-        dateOfBirth: '1980-01-01',
-        email: 'john.doe@example.com',
-        contact_No: '1234567890',
-        address: '123 Main St',
-        age: 40,
-        Salary: 50000.0,
-        zipCode: '12345',
-        join_date: '2000-01-01',
-        hobbies: 'Reading, Traveling',
-        gender_id: 1,
-        shift_type: 1,
-        department_id: 1,
-        country_id: 1,
-        state_id: 1,
-        city_id: 1,
-      },
-      {
-        name: 'Jane Smith',
-        dateOfBirth: '1985-05-15',
-        email: 'jane.smith@example.com',
-        contact_No: '0987654321',
-        address: '456 Oak St',
-        age: 35,
-        Salary: 60000.0,
-        zipCode: '54321',
-        join_date: '2005-06-01',
-        hobbies: 'Swimming, Painting',
-        gender_id: 2,
-        shift_type: 2,
-        department_id: 2,
-        country_id: 2,
-        state_id: 2,
-        city_id: 2,
-      },
-      {
-        name: 'Alice Johnson',
-        dateOfBirth: '1990-10-20',
-        email: 'alice.johnson@example.com',
-        contact_No: '9876543210',
-        address: '789 Elm St',
-        age: 30,
-        Salary: 70000.0,
-        zipCode: '67890',
-        join_date: '2010-03-15',
-        hobbies: 'Photography, Cooking',
-        gender_id: 1,
-        shift_type: 3,
-        department_id: 3,
-        country_id: 3,
-        state_id: 3,
-        city_id: 3,
-      },
-    ];
+  constructor(public dialog: MatDialog, private apiService: ApiService) {}
 
-    this.dataSource = new MatTableDataSource(employees);
+  ngOnInit(): void {
+    this.loadData();
+  }
+
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+  loadData(): void {
+    debugger;
+    let url = this.buildApiUrl();
 
-  openAddEmployeeDialog() {
-    this.dialog.open(AddEmployeeComponent, {
-      width: '400px', // Specify the width of the dialog
-    });
+    this.apiService.getData<Employee[]>(url).subscribe(
+      (response: any) => {
+        debugger;
+        // Parse JSON response to Employee array
+        if (response && response.length > 0) {
+          try {
+            let jsonString = JSON.parse(response);
+
+            this.dataSource.data = jsonString.data;
+          } catch (error) {
+            console.error('Error parsing JSON:', error);
+          }
+        } else {
+          console.error('Empty or invalid response:', response);
+        }
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
   }
+
+  buildApiUrl(): string {
+    return `api/employe?searchTerm=${this.searchField}&sortBy=${this.sortField}&sortDirection=${this.sortDirection}&pageNumber=1&pageSize=${this.pageSize}`;
+  }
+
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -134,21 +112,37 @@ export class EmployeesListComponent {
     }
   }
 
-  onPageChange(event: PageEvent) {
-    // Update your data source here based on the new page event
-    // For example, fetch data from a service or update an array of data
-    // this.dataSource = fetchData(event.pageIndex, event.pageSize);
+  onPageChange(event: PageEvent): void {
+    this.pageSize = event.pageSize;
+    this.loadData();
   }
 
-  preview(row: any) {
-    // Implement preview logic
+  openAddEmployeeDialog(): void {
+    this.dialog.open(AddEmployeeComponent, {
+      width: '400px',
+    });
   }
 
-  edit(row: any) {
-    // Implement edit logic
+  sortData(event: any): void {
+    debugger;
+
+    this.sortField = event.active;
+    this.sortDirection = event.direction;
+    this.loadData();
   }
 
-  delete(row: any) {
-    // Implement delete logic
+  preview(row: Employee): void {
+    debugger
+    // Implement preview logic if needed
+  }
+
+  edit(row: Employee): void {
+    debugger
+    // Implement edit logic if needed
+  }
+
+  delete(row: Employee): void {
+    debugger
+    // Implement delete logic if needed
   }
 }
